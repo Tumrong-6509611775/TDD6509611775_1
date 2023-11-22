@@ -1,9 +1,12 @@
 package core;
 
 public interface IStack {
-		boolean isFull();
-		boolean isEmpty();
-		int  getSize();
-		void push(int elm);
-		Stack top();
+	
+	boolean isEmpty();
+	int getSize();
+	void push(Object elm);
+	Object top();
+	boolean isFull();
+	Object pop();
+	
 }

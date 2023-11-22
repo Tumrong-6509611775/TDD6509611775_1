@@ -1,42 +1,69 @@
 package core;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Stack implements IStack {
 	
-	arr = new int[size];
+	private ArrayList<Object> elm;
 	
-	public Stack() {
-		this.items = new ArrayList<>();
+	Stack(){
+		elm = new ArrayList<Object>();
 	}
-
+	
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return true;
+		if(elm.isEmpty()) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 	@Override
 	public int getSize() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	@Override
-	public boolean isFull() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-	
-	@Override
-	public void push(int i) {
-		arr[getSize()] = i;
+		return elm.size();
 	}
 
 	@Override
-	public Stack top() {
-		return (Stack) items;
+	public void push(Object elm) {
+		if (!isFull()) {
+			this.elm.add(elm);
+		}
+	}
+
+	@Override
+	public Object top() {
+		for (int i=0; i<elm.size(); i++) {
+			if (i == elm.size()-1) {
+				return elm.get(i);
+			}
+			else {
+				continue;
+			}
+		}
+		return 0;
+	}
+
+	@Override
+	public boolean isFull() {
+		return false;
+	}
+
+	@Override
+	public Object pop() {
+		Object temp = null;
+		for (int i=0; i<elm.size(); i++) {
+			if (i == elm.size()-1) {
+				temp = elm.get(i);
+				elm.remove(i);
+				return temp;
+			}
+			else {
+				continue;
+			}
+		}
+		return null;
 	}
 
 }
