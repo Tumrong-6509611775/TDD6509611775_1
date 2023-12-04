@@ -1,69 +1,59 @@
 package core;
 
-import java.util.ArrayList;
 
 public class Stack implements IStack {
 	
-	private ArrayList<Object> elm;
+	int size;
+	int max;
+	int[] arr;
 	
-	Stack(){
-		elm = new ArrayList<Object>();
+	public Stack(int size) {
+		this.size = 0;
+		this.max = size;
+		arr = new int[size];
 	}
-	
+
 	@Override
 	public boolean isEmpty() {
-		if(elm.isEmpty()) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		boolean empty = size == 0; 
+		return empty;
 	}
 
 	@Override
 	public int getSize() {
-		return elm.size();
+		// TODO Auto-generated method stub
+		return size;
 	}
 
 	@Override
-	public void push(Object elm) {
-		if (!isFull()) {
-			this.elm.add(elm);
-		}
+	public int getTop() {
+		// TODO Auto-generated method stub
+		return arr[size-1];
 	}
 
 	@Override
-	public Object top() {
-		for (int i=0; i<elm.size(); i++) {
-			if (i == elm.size()-1) {
-				return elm.get(i);
-			}
-			else {
-				continue;
-			}
+	public void push(int elm) throws Exception {
+		if(this.isFull()) {
+			throw new Exception("Stack is full");
 		}
-		return 0;
+		arr[size] = elm;
+		this.size++;
 	}
 
 	@Override
 	public boolean isFull() {
-		return false;
+		// TODO Auto-generated method stub
+		return max == size;
 	}
 
 	@Override
-	public Object pop() {
-		Object temp = null;
-		for (int i=0; i<elm.size(); i++) {
-			if (i == elm.size()-1) {
-				temp = elm.get(i);
-				elm.remove(i);
-				return temp;
-			}
-			else {
-				continue;
-			}
-		}
-		return null;
+	public int pop() {
+		size--;
+		int bubble = arr[size];
+		arr[size] = 0;
+		return bubble;
 	}
+	
+	
 
 }
