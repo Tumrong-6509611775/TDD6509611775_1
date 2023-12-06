@@ -1,59 +1,48 @@
 package core;
 
+import java.util.ArrayList;
 
 public class Stack implements IStack {
 	
-	int size;
-	int max;
-	int[] arr;
+	private ArrayList<Integer>stack;
 	
-	public Stack(int size) {
-		this.size = 0;
-		this.max = size;
-		arr = new int[size];
+	public Stack() {
+		stack = new ArrayList<>();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		boolean empty = size == 0; 
-		return empty;
+		return stack.isEmpty();
 	}
 
 	@Override
 	public int getSize() {
-		// TODO Auto-generated method stub
-		return size;
+		return stack.size();
 	}
-
-	@Override
-	public int getTop() {
-		// TODO Auto-generated method stub
-		return arr[size-1];
-	}
-
-	@Override
-	public void push(int elm) throws Exception {
-		if(this.isFull()) {
-			throw new Exception("Stack is full");
+	public void push(Integer item) {
+		if(item==null) {
+			throw new IllegalArgumentException("All elements in the stack must be of the same type.");
 		}
-		arr[size] = elm;
-		this.size++;
-	}
-
-	@Override
-	public boolean isFull() {
-		// TODO Auto-generated method stub
-		return max == size;
-	}
-
-	@Override
-	public int pop() {
-		size--;
-		int bubble = arr[size];
-		arr[size] = 0;
-		return bubble;
+		stack.add(item);
 	}
 	
+	@Override
+	public Integer pop() {
+		if(isEmpty()) {
+			return null;
+		}
+		return stack.remove(stack.size()-1);
+	}
+	@Override
+	public Integer peek() {
+		if(isEmpty()) {
+			return null;
+		}
+		return stack.get(stack.size()-1);
+	}
+
+	
+
 	
 
 }
